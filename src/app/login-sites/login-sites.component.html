@@ -1,0 +1,57 @@
+ <!--<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+    api_key: 78s8xwpk6n2hru
+    authorize: true
+    onLoad: onLinkedInLoad
+    // scope: r_fullprofile
+    console.log("BOO")
+  </script>-->
+
+<div class="container">
+    <h1>Login with other profiles</h1>
+
+    <button (click)="loginFb()" class="btn btn-lg btn-facebook">
+        <span class="fa fa-facebook">&nbsp;&nbsp;</span>
+        Login with Facebook
+    </button>
+    <button (click)="me()" class="btn btn-lg btn-facebook">
+        <span class="fa fa-facebook">&nbsp;&nbsp;</span> 
+        Who am I? - Check your console
+    </button>
+    <button (click)="logoutFb()" class="btn btn-lg btn-facebook">
+        <span class="fa fa-facebook">&nbsp;&nbsp;</span> 
+        Logout from Facebook
+    </button>
+
+    <br /><br />
+
+    <google-signin class="btn btn-lg"
+         [clientId]="myClientId"
+        (googleSignInSuccess)="onGoogleSignInSuccess($event)">
+    </google-signin>
+
+    <button (click)="logoutGoogle()" class="logoutGoogle abcRioButton">
+        <span class="absRioButtonContents">Log out from Google</span>
+    </button>
+
+    <br /><br />
+
+    <button  (click)="onLinkedInLoad(); onLinkedInAuth()" class="btn btn-lg btn-linkedin">
+        <span class="fa fa-linkedin">&nbsp;&nbsp;</span>
+        LinkedIn Login
+    </button>
+    <button (click)="logoutLinkedIn()" class="btn btn-lg btn-linkedin">
+        <span class="fa fa-linkedin">&nbsp;&nbsp;</span>
+        Logout from LinkedIn
+    </button> 
+
+    <br /><br />
+
+    <button (click)="signIn('linkedin')">linkedIn</button>
+    <button (click)="signIn('google')">Google</button>
+    <button (click)="signIn('facebook')">Facebook</button>
+    <button (click)="logout()">logout</button>
+
+</div>
+
+
+

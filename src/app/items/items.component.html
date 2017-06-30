@@ -1,0 +1,50 @@
+<div class="container">
+    <h3>This is the items view</h3>
+    <ul class="items">
+      <li *ngFor="let item of items" (click) = "onSelect(item)" [class.selected]="item === selectedItem">
+          <span class="badge">{{item.id}}</span>
+          <span>{{ item.name }}</span>
+          <button class="delete" (click)="delete(item); $event.stopPropagation()">
+            X
+          </button>
+      </li>
+    </ul>
+    <br>
+    <div *ngIf="selectedItem">
+      <h3>Edit the selected item:</h3>
+      <h4>
+        <label>Id:</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{selectedItem.id}}
+      </h4>
+      <h4>
+        <label>Name:</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input [(ngModel)]="selectedItem.name" placeholder="Name of the book" />
+      </h4>
+      <h4>
+        <label>Author:</label>
+        &nbsp;&nbsp;&nbsp;<input [(ngModel)]="selectedItem.author" placeholder="Name of the author" />
+      </h4>
+      <button (click)="cancel()">Cancel</button>
+      <button (click)="save()">Save</button>
+    </div>
+    <br />
+    <div>
+      <h3>Add new item:</h3>
+      <h4>
+        <label>Name:</label>
+        <br />
+        <input mdInput placeholder="Name of the book" #itemName /> 
+      </h4>
+      <h4>
+        <label>Author:</label>
+        <br />
+        <input mdInput placeholder="Author of the book" #itemAuthor /> 
+      </h4>
+      <button (click)="addNewItem(itemName.value, itemAuthor.value); itemName.value =''; itemAuthor.value = ''">Add new item</button>
+    </div>
+
+
+    
+</div>

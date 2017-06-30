@@ -1,0 +1,11 @@
+.logoutGoogle {
+    height: 36px;
+    color: #757575;
+    font-size: 13px;
+    line-height: 34px;
+    letter-spacing: .21px;
+    margin-left: 6px;
+    margin-right: 6px;
+    padding: 2px 12px;
+    border: 1px solid transparent;
+}

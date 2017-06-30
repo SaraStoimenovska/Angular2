@@ -1,0 +1,68 @@
+<div class="container">
+    <form class="example-form" #form = "ngForm" (ngSubmit)="register()">
+      <div>
+        <md-input-container class="example-full-width">
+          <input mdInput type="text" placeholder="First name" [(ngModel)] = "model.firstName" #firstName="ngModel" name="firstName"  required/>  
+        </md-input-container>
+        <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+            <span [hidden]="!firstName.errors.required">First name is required</span>
+        </div>
+      </div>
+
+      <div>
+        <md-input-container class="example-full-width">
+          <input mdInput type="text" placeholder="Last Name" [(ngModel)] = "model.lastName" #lastName="ngModel"  name="lastName" required/>
+        </md-input-container>
+        <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+            <span [hidden]="!lastName.errors.required">Last name is required</span>
+        </div>
+      </div>
+
+      <div>
+        <md-input-container class="example-full-width">
+          <input mdInput type="text" placeholder="Username" [(ngModel)] = "model.username" #username="ngModel"  name="username" required/>
+        </md-input-container>
+        <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
+            <span [hidden]="!username.errors.required">Username is required</span>
+        </div>
+      </div>
+
+      <div>
+        <md-input-container class="example-full-width">
+          <input mdInput type="email" placeholder="Email Address" [(ngModel)] = "model.email" #email="ngModel" name="email" pattern="^[a-z][a-z0-9._]*[^._]@[a-z]+\.[a-z.]{2,5}$" required/>
+        </md-input-container>
+        <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+            <span [hidden]="!email.errors.required">Email is required</span>
+            <span [hidden]="!email.errors.pattern">Email is not valid</span>
+        </div>
+      </div>
+
+      <div>
+        <md-input-container class="example-full-width">
+          <input mdInput  placeholder="Password" [(ngModel)] = "model.password" #password="ngModel" name="password" minlength="6" maxlength="20" required/>
+        </md-input-container>
+        <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+            <span [hidden]="!password.errors.required">Password is required</span>
+            <span [hidden]="!password.errors.minlength">Password must be at least 6 characters long.</span>
+            <span [hidden]="!password.errors.maxlength">Password cannot be more than 20 characters long.</span>
+        </div>
+      </div>
+
+      <pre>
+        First name: {{firstName.value}}
+        Last name:  {{lastName.value}}
+        Username:  {{username.value}}
+        Email:      {{email.value}}
+        Password:   {{password.value}}
+      </pre>
+
+      <div style="text-align: center">
+        <button md-raised-button [disabled]="!form.form.valid" type="submit">
+          Register
+        </button>
+        <button md-raised-button (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+</div>

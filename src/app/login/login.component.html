@@ -1,0 +1,36 @@
+<div class="container">
+    <form class="form" #form = "ngForm" (ngSubmit) = "login()">
+      <div>
+        <md-input-container class="example-full-width">
+          <input mdInput type="text" placeholder="Username" name="username" [(ngModel)]="model.username" #username="ngModel" required/>
+        </md-input-container>
+        <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
+            <span [hidden]="!username.errors.required">Username is required</span>
+        </div>
+      </div>
+
+      <div>
+        <md-input-container class="example-full-width">
+          <input mdInput  placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" minlength="6" maxlength="20" required/>
+        </md-input-container>
+        <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+            <span [hidden]="!password.errors.required">Password is required</span>
+            <span [hidden]="!password.errors.minlength">Password must be at least 6 characters long.</span>
+            <span [hidden]="!password.errors.maxlength">Password cannot be more than 20 characters long.</span>
+        </div>
+      </div>
+
+      <a [routerLink]="['/register']" class="btn btn-link">Click here to Register</a>
+
+      <pre>
+        First name: {{username.value}}
+        Last name:  {{password.value}}
+      </pre>
+
+      <div style="text-align: center">
+        <button md-raised-button [disabled]="!form.form.valid" type="submit">
+          Login
+        </button>
+      </div>
+    </form>
+</div>

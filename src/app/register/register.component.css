@@ -1,0 +1,19 @@
+.example-form {
+    width: 100%;
+    font-family: Arial;
+    font-size: medium;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+p {
+    padding-top: 20px;
+}
+
+button {
+    width: 15%;
+    margin: 0 20px;
+}
+
