@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Login with LinkedIn profile</h1>
+
+    <button  (click)="onLinkedInLoad(); onLinkedInAuth()" class="btn btn-lg btn-linkedin">
+        <span class="fa fa-linkedin">&nbsp;&nbsp;</span>
+        LinkedIn Login
+    </button>
+    <button (click)="logoutLinkedIn()" class="btn btn-lg btn-linkedin">
+        <span class="fa fa-linkedin">&nbsp;&nbsp;</span>
+        Logout from LinkedIn
+    </button> 
+
+    <h1>User info:</h1>
+    <h4><label>First Name: </label><span id="firstName"></span></h4>
+    <h4><label>Last Name: </label><span id="lastName"></span></h4>
+    <h4><label>Headline: </label><span id="headline"></span></h4>
+
+</div>
+
+
+

@@ -35,6 +35,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent, RegisterDialogComponent } from './register/register.component';
 import { ItemsComponent } from './items/items.component';
 import { LoginComponent } from './login/login.component';
+import { LoginLinkedInComponent } from './login-linked-in/login-linked-in.component';
 
 import { ItemsService } from './items/items.service';
 import { AuthenticationService } from './services/authentication.service';
@@ -67,7 +68,8 @@ let providers = {
     ItemsComponent,
     LoginComponent,
     LoginSitesComponent,
-    GoogleSignInComponent
+    GoogleSignInComponent,
+    LoginLinkedInComponent
   ],
   imports: [
     Angular2SocialLoginModule,

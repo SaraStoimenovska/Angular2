@@ -17,8 +17,8 @@ export let fakeBackendProvider = {
                 if (connection.request.url.endsWith('/api/authenticate') && connection.request.method === RequestMethod.Post) {
                     // get parameters from post request
                     let params = JSON.parse(connection.request.getBody());
- 
-                    // find if any user matches login credentials 
+
+                    // find if any user matches login credentials
                     let filteredUsers = users.filter(user => {
                         return user.username === params.username && user.password === params.password;
                     });

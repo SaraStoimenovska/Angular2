@@ -85,7 +85,7 @@ export class LoginSitesComponent {
   }
   onLinkedInAuth() {
     IN.API.Profile("me")
-      .fields(["firstName", "lastName"])
+      // .fields(["firstName", "lastName"])
       .result(
         this.displayProfiles,
         function(result) {
@@ -95,7 +95,7 @@ export class LoginSitesComponent {
   }
   displayProfiles(profiles) {
     var linkedinmember = profiles.values[0];
-    // console.log(JSON.stringify(linkedinmember));
+    console.log(JSON.stringify(linkedinmember));
     console.log(linkedinmember.firstName + " " + linkedinmember.lastName);
   }
   displayProfilesErrors(error) {
@@ -107,7 +107,7 @@ export class LoginSitesComponent {
     console.log('Logged out from LinkedIn');
   }
 
-  signIn(provider) {
+  login(provider) {
     this.sub = this.auth.login(provider).subscribe(
       (data) => {
         console.log('Logged in');
