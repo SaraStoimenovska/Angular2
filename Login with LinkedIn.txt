@@ -1,0 +1,152 @@
+1. Create LinkedIn application
+  - Go to https://www.linkedin.com/secure/developer
+  - Click "Create Application"
+  - Add the info about the app
+  - If you run your project locally, for Website URL enter localhost and the port your server is working
+    (ex. http://localhost:4200)
+2. When your application is created, the Authentication tab is opened
+  - You will see your Client ID and your Client Secret
+  - In OAuth 2.0 field, enter your authorized Redirect URL (it is same as the LinkedIn callback URL)
+    (ex. http://127.0.0.1:4200/login/callback)
+3.1 Open your project
+  - In the head tag of index.html, input the following script
+   <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+	api_key: YOUR_CLIENT_ID
+	authorize: true
+   </script>
+  -Add this script in body tag
+  <script type="in/Login"></script>
+
+(Number 3.1 doesn't work for me so I followed another steps:
+
+3.2 - HTML code:
+   <button  (click)="onLinkedInLoad()" class="btn btn-lg>LinkedIn Login
+</button>
+    
+    - In Index.html
+      <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+ 	  api_key: YOUR_CLIENT_ID
+  	  authorize: true
+      </script>
+
+    - Typescript code:
+   onLinkedInLoad() {
+
+      IN.UI.Authorize().params({"scope":["r_basicprofile"]}).place();
+
+      IN.Event.on(IN, 'auth', this.onLinkedInAuth);
+
+    }
+
+   onLinkedInAuth() {
+
+      IN.API.Profile("me")
+
+          .fields(["firstName", "lastName"])
+    
+      .result(
+
+	        this.displayProfiles,
+ 	
+        function(result) {})
+    
+      .error(this.displayProfilesErrors);
+
+   }
+
+   displayProfiles(profiles) {
+
+      var linkedinmember = profiles.values[0];
+  
+    console.log(JSON.stringify(linkedinmember));
+      console.log(linkedinmember.firstName + " " + linkedinmember.lastName);
+
+   }
+
+   displayProfilesErrors(error) {
+
+      console.log(error.message);
+  
+   }
+
+You can integrate Login with LinkedIn button in another way:
+
+3.3 Integrate LinkedIn with angular2-social-login
+  - Install angular2-social-login into your project folder
+    npm install angular2-social-login
+
+  - Import in app.module.ts
+    import { Angular2SocialLoginModule } from 'angular2-social-login';
+
+  - Register it in imports of NgModule in app.module.ts
+    imports: [
+    Angular2SocialLoginModule     ]
+
+  - Add a variable for the provider
+    let providers = {
+
+	'linkedin': {
+	
+    'clientId': 'YOUR_CLIENT_ID'
+    
+        }
+
+    };
+
+  - Add this line at t he bottom of app.module.ts
+    Angular2SocialLoginModule.loadProvidersScripts(providers);
+ 
+  - In Index.html
+    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+ 	api_key: YOUR_CLIENT_ID
+  	authorize: true
+    </script>
+
+  - HTML code:
+    <button (click)="login('linkedin')">Login with LinkedIn</button>
+
+    <button (click)="logout()">logout</button
+
+  - Code in your component.ts
+    login(provider) {
+
+        this.sub = this.auth.login(provider).subscribe(
+     
+      (data) => {
+	
+        console.log('Logged in');
+	
+        console.log(data);
+	
+        this.user = data;
+     
+      }
+
+         )
+
+    }
+  
+  logout() {
+    
+    this.auth.logout().subscribe(
+
+	   (data) => {
+	
+        console.log(data);
+	
+        this.user = null;
+	
+        console.log('Logged out');
+     
+      }
+     
+    )
+
+    }
+
+
+
+
+
+
+
