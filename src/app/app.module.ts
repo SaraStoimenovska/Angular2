@@ -7,7 +7,7 @@ import { HttpModule, Headers } from '@angular/http';
 
 import { FacebookService } from 'ng2-facebook-sdk';
 import { TwitterService } from 'ng2-twitter';
-// import { AuthService, AppGlobals } from 'angular2-google-login';
+import { AuthService, AppGlobals } from 'angular2-google-login';
 import {GoogleSignInComponent} from 'angular-google-signin';
 
 
@@ -43,6 +43,7 @@ import { UserService } from './services/user.service';
 import { LoginSitesComponent } from './login-sites/login-sites.component';
 
 import { Angular2SocialLoginModule } from 'angular2-social-login';
+import { DragulaModule } from 'ng2-dragula';
 
 let providers = {
     'linkedin': {
@@ -80,6 +81,7 @@ let providers = {
     FormsModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
+    DragulaModule
   ],
   providers: [
     ItemsService,
@@ -87,12 +89,12 @@ let providers = {
     UserService,
     AuthGuard,
     // providers used to create fake backend
-    fakeBackendProvider,
+    // fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,
     FacebookService,
     TwitterService,
-    // AuthService,
+    AuthService,
   ],
   bootstrap: [ AppComponent ],
   entryComponents: [

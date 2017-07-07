@@ -79,7 +79,9 @@ export let fakeBackendProvider = {
                     let newUser = JSON.parse(connection.request.getBody());
 
                     // validation
-                    let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
+                    let duplicateUser = users.filter(user => {
+                        return user.username === newUser.username;
+                    }).length;
                     if (duplicateUser) {
                         return connection.mockError(new Error('Username "' + newUser.username + '" is already taken'));
                     }
@@ -100,7 +102,7 @@ export let fakeBackendProvider = {
                     if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                         // find user by id in users array
                         let urlParts = connection.request.url.split('/');
-                        let id = parseInt(urlParts[urlParts.length - 1]);
+                        let id = parseInt(urlParts[urlParts.length - 1], 10);
                         for (let i = 0; i < users.length; i++) {
                             let user = users[i];
                             if (user.id === id) {

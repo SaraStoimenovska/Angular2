@@ -1,0 +1,83 @@
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+   list-style-type: none;
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+
+h1 {
+  text-align: center;
+  background-color: #AC5C7E;
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+h3 {
+  background-color: rgba(255, 255, 255, 0.2);
+  text-align: center;
+  padding: 10px;
+}
+
+h3 div {
+  margin-bottom: 10px;
+}
+
+.tagline {
+  margin-top: 0;
+}
+
+.promo {
+  margin-bottom: 0;
+  font-style: italic;
+  padding: 10px;
+  background-color: #ff4020;
+  border-bottom: 5px solid #c00;
+}
+
+.gh-fork {
+  position: fixed;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+.container div,
+.gu-mirror {
+  margin: 10px;
+  padding: 10px;
+  transition: opacity 0.4s ease-in-out;
+}
+.gu-mirror {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+.container .ex-moved {
+  background-color: #e74c3c;
+}
+.container.ex-over {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.handle {
+  padding: 0 5px;
+  margin-right: 5px;
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: move;
+}
