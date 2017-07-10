@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { Item } from './item';
@@ -14,7 +14,7 @@ import { DragulaService } from 'ng2-dragula';
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css', './dragula.css'],
 })
-export class ItemsComponent implements OnInit {
+export class ItemsComponent implements OnInit, DoCheck {
   items: Item[];
   selectedItem: Item;
   item: Item;
@@ -22,6 +22,13 @@ export class ItemsComponent implements OnInit {
   endIndex;
   dragItem;
   dropItem;
+
+  ngDoCheck() {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add 'implements OnChanges' to the class.
+    // alert("Change detected!");
+    console.log("Change detected");
+  }
 
   constructor(private itemsService: ItemsService,
               private dragulaService: DragulaService) {
@@ -33,6 +40,10 @@ export class ItemsComponent implements OnInit {
                 dragulaService.drop.subscribe((value) => {
                   this.onDrop(value.slice(1));
                 });
+
+                Array.observe(this.items, function(changes) {
+                  console.log(changes);
+                })
 
               }
 
