@@ -61,7 +61,7 @@ export class ItemsComponent implements OnInit {
           this.items[indexDown] = this.items[cnt];
         }
         this.items[indexDown] = tmp;
-      } else {
+      } else {                      // moving element up
         let indexUp = startIndex;
         let tmp = this.items[indexUp];
         tmp.order = endIndex;
