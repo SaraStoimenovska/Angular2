@@ -1,4 +1,5 @@
-import { Component, OnInit, DoCheck, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, DoCheck, IterableDiffers } from '@angular/core';
+
 import { Location } from '@angular/common';
 
 import { Item } from './item';
@@ -6,39 +7,25 @@ import { ItemsService } from './items.service';
 
 import { DragulaService } from 'ng2-dragula';
 
-// import { DragulaService } from 'ng2-dragula/components/dragula.provider'
-
-
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css', './dragula.css'],
 })
-export class ItemsComponent implements OnInit, DoCheck, OnChanges {
-  items: Item[];
+export class ItemsComponent implements OnInit, DoCheck {
+  items: Item[] = [];
   selectedItem: Item;
   item: Item;
   startIndex;
   endIndex;
   dragItem;
   dropItem;
-
-  @Input() itemmm: Item;
-  ngOnChanges(changes) {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add 'implements OnChanges' to the class.
-    console.log('Change detected:', changes);
-  }
-
-  ngDoCheck() {
-    console.log("Change detected");
-    if (this.onDrag) {
-      console.log("on drag");
-    }
-  }
+  differ: any;
 
   constructor(private itemsService: ItemsService,
-              private dragulaService: DragulaService) {
+              private dragulaService: DragulaService,
+              differs: IterableDiffers) {
+                this.differ = differs.find([]).create(null);
 
                 dragulaService.drag.subscribe((value) => {
                   this.onDrag(value.slice(1));
@@ -48,11 +35,17 @@ export class ItemsComponent implements OnInit, DoCheck, OnChanges {
                   this.onDrop(value.slice(1));
                 });
 
-                // Array.observe(this.items, function(changes) {
-                //   console.log(changes);
-                // })
-
               }
+
+  ngDoCheck() {
+    const changes = this.differ.diff(this.items);
+    if (changes) {
+    console.log('new change'); // for splitting up changes
+      changes.forEachAddedItem(r => console.log('added ', r.item));
+      changes.forEachRemovedItem(r => console.log('removed ', r.item))
+      changes.forEachMovedItem(r => console.log('moved ', r.item))
+    }
+  }
 
     private onDrag(args) {
         let [el, parent] = args;
@@ -90,7 +83,6 @@ export class ItemsComponent implements OnInit, DoCheck, OnChanges {
         }
         this.items[indexUp] = tmp;
       }
-
     }
 
     private getElementIndex(el: any) {

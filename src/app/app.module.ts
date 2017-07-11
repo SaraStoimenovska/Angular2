@@ -45,6 +45,10 @@ import { LoginSitesComponent } from './login-sites/login-sites.component';
 import { Angular2SocialLoginModule } from 'angular2-social-login';
 import { DragulaModule } from 'ng2-dragula';
 
+import { IterableDiffer, IterableDiffers } from 'angular2/core';
+
+
+
 let providers = {
     'linkedin': {
       'clientId': '78s8xwpk6n2hru'
@@ -100,7 +104,7 @@ let providers = {
   entryComponents: [
     DialogComponent,
     RegisterDialogComponent
-  ]
+  ],
 })
 export class AppModule { }
 Angular2SocialLoginModule.loadProvidersScripts(providers);
