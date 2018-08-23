@@ -26,3 +26,16 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## MEAN Stack Authentication
+To run, you just have MongoDB installed and running, and NodeJS installed.
+
+Start MongoDB
+
+Clone the repo
+
+npm install to install API dependencies and npm start to start the API
+
+Open a new terminal and navigate to the client directory, npm install to setup the Angular dependencies, and npm start to start the local development server
+
+Open http://localhost:4200 to see the application
